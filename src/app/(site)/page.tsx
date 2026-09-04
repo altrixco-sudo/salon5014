@@ -181,7 +181,7 @@ export default function HomePage() {
               <Link href="/services" className="font-semibold text-copper underline underline-offset-4 hover:text-copper-deep">
                 Browse all services
               </Link>{" "}
-              or ask the AI Front Desk below — it knows the menu by heart.
+              or use the service finder below to narrow things down.
             </p>
           </Reveal>
         </div>
