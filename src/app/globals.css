@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --cream: #f7f2e9;
+  --sand: #efe6d7;
+  --ivory: #fcf9f3;
+  --ink: #221c15;
+  --muted: #6e6355;
+  --line: #e3d8c6;
+  --copper: #9a5b33;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(154, 91, 51, 0.18);
+  color: #160f09;
+}
+
+:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* thin elegant scrollbar for panels */
+.thin-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(34, 28, 21, 0.22);
+  border-radius: 99px;
+}
+.thin-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-[1400px] px-5 sm:px-8 lg:px-12;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[11px] font-medium uppercase;
+    letter-spacing: 0.26em;
+  }
+
+  .label-sm {
+    @apply font-sans text-[10px] font-semibold uppercase tracking-wide3;
+  }
+
+  .hairline {
+    @apply border-line;
+  }
+
+  .serif-display {
+    font-family: var(--font-serif), Georgia, serif;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 text-[11px] font-semibold uppercase tracking-wide2 transition-all duration-300 select-none;
+  }
+
+  .btn-solid {
+    @apply btn bg-ink text-ivory px-7 py-4 hover:bg-copper-deep;
+  }
+
+  .btn-copper {
+    @apply btn bg-copper text-ivory px-7 py-4 hover:bg-copper-deep;
+  }
+
+  .btn-outline {
+    @apply btn border border-ink/70 px-7 py-4 text-ink hover:bg-ink hover:text-ivory;
+  }
+
+  .btn-ghost-light {
+    @apply btn border border-ivory/50 px-7 py-4 text-ivory hover:bg-ivory hover:text-ink;
+  }
+
+  .btn-pill {
+    @apply btn rounded-full border border-ink/25 px-5 py-2.5 text-ink hover:border-ink hover:bg-ink hover:text-ivory;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* reveal stagger helper */
+.stagger > * {
+  transition-delay: calc(var(--d, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
